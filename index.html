@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>5am Corporation | Private Matrix</title>
-    <!-- Fuentes de Élite Apple-Style: Inter (Pureza y Estructura) y Plus Jakarta Sans (Suavidad Tecnológica) -->
+    <!-- Fuentes de Élite Apple-Style: Inter y Plus Jakarta Sans -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -64,7 +64,7 @@
             opacity: 0.6;
         }
 
-        /* Marcadores perimetrales estilo Apple Diagnostics */
+        /* Marcadores perimetrales */
         .matrix-data-tag {
             position: fixed;
             font-size: 0.55rem;
@@ -77,7 +77,7 @@
         .tag-left { top: 40px; left: 40px; transform: rotate(-90deg) translateX(-100%); transform-origin: top left; }
         .tag-right { bottom: 40px; right: 40px; transform: rotate(90deg) translateX(100%); transform-origin: bottom right; }
 
-        /* --- HERO PORTADA (DESVANECIMIENTO CON ACELERACIÓN MÓVIL) --- */
+        /* --- HERO PORTADA CELESTIAL Y TOTALMENTE CENTRADA --- */
         .hero-viewport {
             height: 100vh;
             display: flex;
@@ -100,33 +100,33 @@
             text-transform: uppercase;
             border: 1px solid var(--border-glass);
             padding: 8px 20px;
-            border-radius: 8px; /* Redondeado estilo insignia Apple OS */
+            border-radius: 8px;
             background: rgba(255, 255, 255, 0.01);
-            margin-bottom: 35px;
+            margin-bottom: 30px;
             opacity: 0;
             animation: matrixReveal 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.2s;
         }
 
         .hero-viewport h1 {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: clamp(2.4rem, 6.5vw, 4.8rem);
+            font-size: clamp(2.4rem, 6.5vw, 4.5rem);
             font-weight: 700;
-            letter-spacing: -0.03em; /* Kerning estrecho estilo Apple Pro Displays */
+            letter-spacing: -0.03em;
             line-height: 1.1;
             background: linear-gradient(180deg, #ffffff 40%, #6e6e73 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             opacity: 0;
             animation: matrixReveal 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.5s;
         }
 
         .hero-viewport p {
             font-size: clamp(0.9rem, 1.8vw, 1.05rem);
-            max-width: 600px;
+            max-width: 580px;
             color: var(--text-secondary);
             font-weight: 400;
-            line-height: 1.8;
+            line-height: 1.7;
             margin-bottom: 50px;
             letter-spacing: -0.01em;
             opacity: 0;
@@ -160,7 +160,7 @@
 
         /* --- SECCIÓN ECOSISTEMA --- */
         .ecosystem-container {
-            padding: 140px 24px;
+            padding: 120px 24px;
             max-width: 1400px;
             margin: 0 auto;
             position: relative;
@@ -169,7 +169,7 @@
 
         .ecosystem-header {
             text-align: center;
-            margin-bottom: 90px;
+            margin-bottom: 80px;
         }
 
         .ecosystem-header h2 {
@@ -188,7 +188,7 @@
             letter-spacing: 0.25em;
         }
 
-        /* --- ARQUITECTURA DE TARJETAS REDONDEADAS (APPLE STYLE) --- */
+        /* --- REJILLA Y ORIENTACIÓN CENTRADA TOTAL (APPLE ECOSYSTEM LOOK) --- */
         .ecosystem-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -198,10 +198,12 @@
         .ecosystem-card {
             background: var(--bg-card);
             border: 1px solid var(--border-glass);
-            border-radius: 24px; /* Esquinas curvas perfectas estilo ecosistema Apple */
-            padding: 55px 40px;
+            border-radius: 24px;
+            padding: 50px 32px;
             display: flex;
             flex-direction: column;
+            align-items: center; /* Centrado horizontal de hijos */
+            text-align: center; /* Centrado de textos */
             justify-content: space-between;
             min-height: 560px;
             text-decoration: none;
@@ -221,24 +223,33 @@
             box-shadow: 0 50px 100px rgba(0, 0, 0, 0.85);
         }
 
-        /* Cabecera Interna de Tarjeta */
+        /* Wrapper superior para mantener consistencia de centrado */
+        .card-top-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* Cabecera Interna Centrada */
         .card-brand-meta {
             display: flex;
+            flex-direction: column; /* Cambio a columna para centrado móvil perfecto */
             align-items: center;
             gap: 16px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         .brand-avatar {
-            width: 48px;
-            height: 48px;
+            width: 52px;
+            height: 52px;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border-glass);
-            border-radius: 12px; /* Esquinas redondeadas internas proporcionadas */
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: var(--text-secondary);
             transition: var(--transition-fluid);
         }
@@ -251,12 +262,9 @@
 
         .brand-title {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             font-weight: 600;
             letter-spacing: -0.01em;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
         .brand-subtitle {
@@ -265,10 +273,10 @@
             letter-spacing: 0.15em;
             color: var(--text-secondary);
             font-weight: 500;
-            margin-top: 4px;
+            margin-top: 6px;
         }
 
-        /* --- CENSURA DINÁMICA CON ESQUINAS PULIDAS --- */
+        /* --- CENSURA ESTILO APPLE SCREEN --- */
         .censored-text {
             position: relative;
             display: inline-block;
@@ -276,7 +284,7 @@
             color: transparent !important;
             user-select: none;
             cursor: not-allowed;
-            padding: 0 4px;
+            padding: 0 6px;
             border-radius: 4px;
         }
         
@@ -288,12 +296,14 @@
             border-radius: 4px;
         }
 
-        /* --- PÍLDORAS ESTRATEGICAMENTE ARRIBA --- */
+        /* --- PÍLDORAS GRUPALES PERFECTAMENTE CENTRADAS --- */
         .sub-group {
             display: flex;
             gap: 8px;
+            justify-content: center; /* Centra las píldoras horizontalmente */
             flex-wrap: wrap;
             margin-bottom: 35px;
+            width: 100%;
         }
 
         .sub-pill {
@@ -302,7 +312,7 @@
             padding: 6px 14px;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border-glass);
-            border-radius: 8px; /* Coherencia de bordes redondos */
+            border-radius: 8px;
             color: var(--text-secondary);
             letter-spacing: 0.02em;
             transition: var(--transition-fluid);
@@ -318,24 +328,28 @@
             color: #ffffff;
         }
 
-        /* Bloque de Contenido */
+        /* Bloque de Contenido Centrado */
+        .card-manifesto {
+            width: 100%;
+        }
+
         .card-manifesto h3 {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 1.4rem;
+            font-size: 1.35rem;
             font-weight: 600;
             line-height: 1.35;
-            margin-bottom: 15px;
+            margin-bottom: 14px;
             letter-spacing: -0.02em;
         }
 
         .card-manifesto p {
             color: var(--text-secondary);
             font-size: 0.9rem;
-            line-height: 1.7;
+            line-height: 1.65;
             font-weight: 400;
         }
 
-        /* Bloque de Acción Inferior */
+        /* Botón de Acción Inferior Centrado */
         .card-link-trigger {
             font-size: 0.65rem;
             font-weight: 600;
@@ -344,8 +358,10 @@
             color: var(--text-secondary);
             display: flex;
             align-items: center;
+            justify-content: center; /* Forzar alineación al centro */
             gap: 10px;
-            margin-top: 50px;
+            margin-top: 45px;
+            width: 100%;
             transition: var(--transition-fluid);
         }
 
@@ -353,7 +369,7 @@
             color: #ffffff;
         }
         .card-link-trigger i { font-size: 0.7rem; transition: var(--transition-fluid); }
-        .ecosystem-card:hover .card-link-trigger i { transform: translateX(5px); }
+        .ecosystem-card:hover .card-link-trigger i { transform: translateX(4px); }
 
         .card-restricted {
             cursor: not-allowed;
@@ -362,9 +378,9 @@
             border-color: rgba(255, 255, 255, 0.06);
         }
 
-        /* --- FOOTER SOBERBIO --- */
+        /* --- FOOTER CENTRADO --- */
         footer {
-            padding: 110px 24px;
+            padding: 100px 24px;
             border-top: 1px solid var(--border-glass);
             text-align: center;
             position: relative;
@@ -387,23 +403,23 @@
             text-transform: uppercase;
         }
 
-        /* --- DISPOSITIVOS MÓVILES Y RESPONSIVE --- */
+        /* --- MEDIA QUERIES ADAPTADOS PARA ENFOQUE MÓVIL DIRECTO --- */
         @media (max-width: 1200px) {
             .ecosystem-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
         }
 
         @media (max-width: 840px) {
-            .ecosystem-grid { grid-template-columns: 1fr; gap: 35px; }
-            .ecosystem-card { min-height: auto; padding: 45px 32px; border-radius: 20px; }
-            .ecosystem-container { padding: 80px 20px; }
-            .matrix-data-tag { display: none; }
-            .card-link-trigger { margin-top: 40px; }
+            .ecosystem-grid { grid-template-columns: 1fr; gap: 30px; }
+            .ecosystem-card { min-height: auto; padding: 45px 24px; border-radius: 24px; }
+            .ecosystem-container { padding: 60px 20px; }
+            .matrix-data-tag { display: none; } /* Limpieza absoluta en pantallas chicas */
+            .card-link-trigger { margin-top: 35px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Tags Perimetrales Estilo Dashboard Apple -->
+    <!-- Tags Perimetrales Corporativos (Ocultos automáticamente en móvil) -->
     <div class="matrix-data-tag tag-left">SYS.STATUS // OPERATIONAL SECURE</div>
     <div class="matrix-data-tag tag-right">CORE ARCHITECTURE v4.0.26</div>
 
@@ -412,7 +428,7 @@
         <div class="cyber-grid"></div>
     </div>
 
-    <!-- MAIN HERO (DESVANECIMIENTO FLUIDO ADAPTADO PARA PANTALLAS TÁCTILES) -->
+    <!-- MAIN HERO CON MOTOR DE DIFUMINADO Y MOVIMIENTO CORREGIDO PARA PANTALLAS TÁCTILES -->
     <header class="hero-viewport" id="heroPortal">
         <div class="corp-badge">Corporate System</div>
         <h1>5am Corporation</h1>
@@ -423,7 +439,7 @@
         </a>
     </header>
 
-    <!-- CONTAINER PRINCIPAL -->
+    <!-- ENTORNO COMPLETO DEL ECOSISTEMA -->
     <main class="ecosystem-container" id="holdings">
         <div class="ecosystem-header">
             <p>Holdings & Asset Management</p>
@@ -432,9 +448,9 @@
 
         <div class="ecosystem-grid">
             
-            <!-- DIVISION 1: 5AM ENTERPRISES -->
+            <!-- DIVISION 1: 5AM ENTERPRISES (ACTIVA & TOTALMENTE CENTRADA) -->
             <a href="https://instagram.com/tu_agencia_o_red" target="_blank" class="ecosystem-card">
-                <div>
+                <div class="card-top-wrapper">
                     <div class="card-brand-meta">
                         <div class="brand-avatar">
                             <i class="fa-solid fa-layer-group"></i>
@@ -463,7 +479,7 @@
 
             <!-- DIVISION 2: 5AM TECH (CENSURADO / PROXIMAMENTE) -->
             <div class="ecosystem-card card-restricted">
-                <div>
+                <div class="card-top-wrapper">
                     <div class="card-brand-meta">
                         <div class="brand-avatar">
                             <i class="fa-solid fa-lock"></i>
@@ -486,14 +502,14 @@
                         <p>Desarrollo estratégico de software cerrado y soluciones tecnológicas orientadas al alto rendimiento. El acceso público a la landing se encuentra suspendido de manera temporal.</p>
                     </div>
                 </div>
-                <div class="card-link-trigger" style="cursor: not-allowed; opacity: 0.4;">
-                    Acceso Restringido <i class="fa-solid fa-lock" style="font-size: 0.6rem; margin-left: 5px;"></i>
+                <div class="card-link-trigger" style="opacity: 0.4;">
+                    Acceso Restringido <i class="fa-solid fa-lock" style="font-size: 0.6rem;"></i>
                 </div>
             </div>
 
             <!-- DIVISION 3: STORE GH (CENSURADO / PROXIMAMENTE) -->
             <div class="ecosystem-card card-restricted">
-                <div>
+                <div class="card-top-wrapper">
                     <div class="card-brand-meta">
                         <div class="brand-avatar">
                             <i class="fa-solid fa-lock"></i>
@@ -516,8 +532,8 @@
                         <p>Distribución y logística de alta costura urbana. El inventario de drops exclusivos y pasarelas de pago digitales se reanudará en la siguiente fase corporativa.</p>
                     </div>
                 </div>
-                <div class="card-link-trigger" style="cursor: not-allowed; opacity: 0.4;">
-                    Acceso Restringido <i class="fa-solid fa-lock" style="font-size: 0.6rem; margin-left: 5px;"></i>
+                <div class="card-link-trigger" style="opacity: 0.4;">
+                    Acceso Restringido <i class="fa-solid fa-lock" style="font-size: 0.6rem;"></i>
                 </div>
             </div>
 
@@ -530,7 +546,7 @@
     </footer>
 
     <script>
-        // MOTOR DE SCROLL ULTRA FLUÍDO (ACELERADO POR HARDWARE EN IOS & ANDROID)
+        // MOTOR DE SCROLL COMPACTO PARA SMARTPHONES (RENDIMIENTO SUAVE EN PANTALLAS TÁCTILES)
         const heroPortal = document.getElementById('heroPortal');
         let ticking = false;
 
@@ -544,7 +560,6 @@
                 
                 heroPortal.style.opacity = fadeFactor.toFixed(2);
                 heroPortal.style.filter = `blur(${blurFactor.toFixed(1)}px)`;
-                // translate3d activa los núcleos gráficos del smartphone garantizando suavidad total
                 heroPortal.style.transform = `translate3d(0, ${(currentScroll * -0.16).toFixed(1)}px, 0)`;
             }
             ticking = false;
