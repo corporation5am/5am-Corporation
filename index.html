@@ -2,21 +2,22 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>5am Corporation | Corporate Matrix</title>
-    <!-- Fuentes de Alta Gama: Cinzel para el Imperio y Plus Jakarta para la tecnología -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>5am Corporation | Private Matrix</title>
+    <!-- Fuentes de Élite: Cormorant Garamond (Elegancia Absoluta) y Space Grotesk (Seriedad Técnica) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,700;1,300&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --bg-pure: #030305;
-            --bg-card: rgba(10, 10, 15, 0.75);
-            --border-glass: rgba(255, 255, 255, 0.04);
-            --border-active: rgba(255, 255, 255, 0.18);
+            --bg-pure: #020203;
+            --bg-card: rgba(8, 8, 10, 0.8);
+            --border-glass: rgba(255, 255, 255, 0.03);
+            --border-active: rgba(255, 255, 255, 0.15);
             --text-primary: #ffffff;
-            --text-secondary: #8e8d98;
-            --transition-fluid: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            --text-secondary: #707077;
+            --censored-color: #ffffff;
+            --transition-fluid: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * {
@@ -24,17 +25,18 @@
             padding: 0;
             box-sizing: border-box;
             scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
             background-color: var(--bg-pure);
             color: var(--text-primary);
             overflow-x: hidden;
-            perspective: 1000px;
+            perspective: 1200px;
         }
 
-        /* --- AMBIENTACIÓN CINEMÁTICA --- */
+        /* --- AMBIENTACIÓN Y LÍNEAS DE CÓDIGO MATRIZ --- */
         .ambient-matrix {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -44,10 +46,10 @@
 
         .glow-top {
             position: absolute;
-            top: -20%; left: 50%; transform: translateX(-50%);
-            width: 90vw; height: 60vh;
-            background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
-            filter: blur(80px);
+            top: -25%; left: 50%; transform: translateX(-50%);
+            width: 85vw; height: 55vh;
+            background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 75%);
+            filter: blur(90px);
         }
 
         .cyber-grid {
@@ -55,20 +57,27 @@
             width: 200%; height: 200%;
             top: -50%; left: -50%;
             background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.008) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.008) 1px, transparent 1px);
-            background-size: 80px 80px;
-            transform: rotateX(50deg) translateZ(-80px);
-            opacity: 0.7;
-            animation: gridScroll 140s linear infinite;
+                linear-gradient(rgba(255, 255, 255, 0.005) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.005) 1px, transparent 1px);
+            background-size: 100px 100px;
+            transform: rotateX(55deg) translateZ(-60px);
+            opacity: 0.6;
         }
 
-        @keyframes gridScroll {
-            0% { background-position: 0 0; }
-            100% { background-position: 0 1000px; }
+        /* Marcadores perimetrales estilo terminal confidencial */
+        .matrix-data-tag {
+            position: fixed;
+            font-size: 0.55rem;
+            color: rgba(255,255,255,0.15);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            z-index: 10;
+            font-weight: 400;
         }
+        .tag-left { top: 40px; left: 40px; transform: rotate(-90deg) translateX(-100%); transform-origin: top left; }
+        .tag-right { bottom: 40px; right: 40px; transform: rotate(90deg) translateX(100%); transform-origin: bottom right; }
 
-        /* --- HERO PORTADA (CON SOPORTE DE DESVANECIMIENTO) --- */
+        /* --- HERO PORTADA (DESVANECIMIENTO CON ACELERACIÓN MÓVIL) --- */
         .hero-viewport {
             height: 100vh;
             display: flex;
@@ -79,86 +88,79 @@
             padding: 24px;
             position: relative;
             z-index: 2;
-            will-change: transform, opacity, filter;
-            transition: opacity 0.2s linear, transform 0.2s linear, filter 0.2s linear;
+            will-change: transform, opacity; /* Forzar el uso de GPU en smartphones */
+            transform: translate3d(0,0,0);
         }
 
         .corp-badge {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.4em;
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.5em;
             color: var(--text-secondary);
             text-transform: uppercase;
             border: 1px solid var(--border-glass);
-            padding: 9px 22px;
-            border-radius: 6px;
+            padding: 8px 24px;
+            border-radius: 0px; /* Bordes rectos para mayor seriedad */
             background: rgba(255, 255, 255, 0.01);
-            backdrop-filter: blur(10px);
             margin-bottom: 35px;
             opacity: 0;
-            animation: matrixReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.2s;
+            animation: matrixReveal 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.2s;
         }
 
         .hero-viewport h1 {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(2.4rem, 6.5vw, 4.8rem);
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            line-height: 1.15;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.6rem, 7vw, 5.2rem);
+            font-weight: 300; /* Estilo ultra delgado y sofisticado */
+            letter-spacing: 0.05em;
+            line-height: 1.1;
             text-transform: uppercase;
-            background: linear-gradient(180deg, #ffffff 40%, #5b5a62 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #ffffff;
             margin-bottom: 30px;
             opacity: 0;
-            animation: matrixReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.5s;
+            animation: matrixReveal 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.5s;
         }
 
         .hero-viewport p {
-            font-size: clamp(0.95rem, 1.8vw, 1.15rem);
-            max-width: 680px;
+            font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+            max-width: 620px;
             color: var(--text-secondary);
             font-weight: 300;
-            line-height: 1.8;
+            line-height: 1.9;
             margin-bottom: 50px;
-            letter-spacing: 0.01em;
+            letter-spacing: 0.03em;
             opacity: 0;
-            animation: matrixReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.8s;
+            animation: matrixReveal 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.8s;
         }
 
         .action-scroll {
             position: absolute;
             bottom: 60px;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.65rem;
-            font-weight: 600;
-            letter-spacing: 0.3em;
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 0.4em;
             color: var(--text-secondary);
             text-decoration: none;
             text-transform: uppercase;
             transition: var(--transition-fluid);
             opacity: 0;
-            animation: matrixReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards 1.1s;
+            animation: matrixReveal 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards 1.1s;
         }
-
-        .action-scroll:hover { color: #ffffff; text-shadow: 0 0 15px #fff; }
-        .action-scroll i { display: block; margin-top: 14px; font-size: 0.8rem; animation: pulseArrow 2s infinite; }
+        .action-scroll i { display: block; margin-top: 15px; font-size: 0.75rem; animation: pulseArrow 2.5s infinite; }
 
         @keyframes pulseArrow {
-            0%, 100% { transform: translateY(0); opacity: 0.3; }
-            50% { transform: translateY(6px); opacity: 1; }
+            0%, 100% { transform: translateY(0); opacity: 0.2; }
+            50% { transform: translateY(5px); opacity: 0.8; }
         }
 
         @keyframes matrixReveal {
-            from { opacity: 0; transform: translateY(30px); filter: blur(10px); }
-            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+            from { opacity: 0; transform: translate3d(0, 20px, 0); filter: blur(5px); }
+            to { opacity: 1; transform: translate3d(0, 0, 0); filter: blur(0); }
         }
 
-        /* --- ECOSYSTEM SECTION --- */
+        /* --- SECCIÓN ECOSISTEMA --- */
         .ecosystem-container {
             padding: 140px 24px;
-            max-width: 1440px;
+            max-width: 1400px;
             margin: 0 auto;
             position: relative;
             z-index: 3;
@@ -166,197 +168,202 @@
 
         .ecosystem-header {
             text-align: center;
-            margin-bottom: 90px;
+            margin-bottom: 100px;
         }
 
         .ecosystem-header h2 {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(1.8rem, 4vw, 2.6rem);
-            font-weight: 600;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4.5vw, 2.8rem);
+            font-weight: 400;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 20px;
+            letter-spacing: 0.08em;
+            margin-bottom: 15px;
         }
 
         .ecosystem-header p {
             color: var(--text-secondary);
-            font-size: 0.75rem;
-            font-weight: 600;
+            font-size: 0.7rem;
+            font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 0.3em;
+            letter-spacing: 0.35em;
         }
 
-        /* --- GRID ESTRUCTURADO --- */
+        /* --- REJILLA ESTRUCTURAL DE TARJETAS --- */
         .ecosystem-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
+            gap: 45px;
         }
 
         .ecosystem-card {
             background: var(--bg-card);
             border: 1px solid var(--border-glass);
-            border-radius: 28px;
+            border-radius: 0px; /* Estética minimalista industrial rectilínea */
             padding: 55px 45px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 560px;
+            min-height: 570px;
             text-decoration: none;
             color: var(--text-primary);
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            box-shadow: 0 40px 90px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255,255,255,0.05);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9);
             transform-style: preserve-3d;
             transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.6s, box-shadow 0.6s;
         }
 
-        .ecosystem-card::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(800px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255,255,255,0.04), transparent 45%);
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-
-        .ecosystem-card:hover::after { opacity: 1; }
-
         .ecosystem-card:hover {
-            transform: translateY(-10px) scale(1.01) rotateX(1.5deg) rotateY(1deg);
+            transform: translate3d(0, -8px, 0) scale(1.01);
             border-color: var(--border-active);
-            box-shadow: 0 60px 130px rgba(0, 0, 0, 0.9);
+            box-shadow: 0 50px 110px rgba(0, 0, 0, 0.95);
         }
 
-        /* Cabeceras de Tarjeta */
+        /* Cabecera Interna */
         .card-brand-meta {
             display: flex;
             align-items: center;
             gap: 20px;
-            margin-bottom: 30px; /* Reducido para dar paso a las píldoras organizadas */
-            transform: translateZ(40px);
+            margin-bottom: 30px;
         }
 
         .brand-avatar {
-            width: 55px;
-            height: 55px;
-            background: rgba(255, 255, 255, 0.02);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.01);
             border: 1px solid var(--border-glass);
-            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
             transition: var(--transition-fluid);
         }
 
         .ecosystem-card:hover .brand-avatar {
             background: #ffffff;
             color: #000000;
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
+            border-color: #ffffff;
         }
 
         .brand-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1.15rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
             text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .brand-subtitle {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             text-transform: uppercase;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.25em;
             color: var(--text-secondary);
-            font-weight: 500;
+            font-weight: 400;
             margin-top: 5px;
         }
 
-        /* --- NUEVO POSICIONAMIENTO SUPERIOR DE LAS PÍLDORAS --- */
+        /* --- EFECTO CENSURADO (CON CLASE INDEPENDIENTE) --- */
+        .censored-text {
+            position: relative;
+            display: inline-block;
+            background-color: var(--censored-color);
+            color: transparent !0important;
+            user-select: none;
+            cursor: not-allowed;
+            padding: 0 4px;
+        }
+        
+        .censored-text::after {
+            content: "";
+            position: absolute;
+            left: 0; top: 0; width: 100%; height: 100%;
+            background-color: #111115;
+        }
+
+        /* --- PÍLDORAS ORGANIZADAS ARRIBA --- */
         .sub-group {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
-            margin-bottom: 35px; /* Margen amplio que separa visualmente del manifiesto */
-            transform: translateZ(35px);
+            margin-bottom: 35px;
         }
 
         .sub-pill {
-            font-size: 0.7rem;
-            font-weight: 600;
-            padding: 8px 18px;
+            font-size: 0.65rem;
+            font-weight: 400;
+            padding: 6px 14px;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border-glass);
-            border-radius: 100px;
-            color: rgba(255, 255, 255, 0.8);
-            letter-spacing: 0.02em;
+            color: var(--text-secondary);
+            letter-spacing: 0.05em;
             transition: var(--transition-fluid);
         }
 
-        .ecosystem-card:hover .sub-pill {
-            border-color: rgba(255, 255, 255, 0.12);
-            background: rgba(255, 255, 255, 0.04);
+        .sub-pill.pill-locked {
+            border-color: rgba(255, 255, 255, 0.05);
+            background: transparent;
+            font-style: italic;
+        }
+
+        .ecosystem-card:hover .sub-pill:not(.pill-locked) {
+            border-color: rgba(255, 255, 255, 0.15);
             color: #ffffff;
         }
 
-        /* Bloque de Texto (Manifiesto) */
-        .card-manifesto {
-            transform: translateZ(30px);
-        }
-
+        /* Bloque de Contenido */
         .card-manifesto h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            line-height: 1.35;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            line-height: 1.3;
             margin-bottom: 15px;
-            letter-spacing: -0.02em;
+            letter-spacing: 0.01em;
         }
 
         .card-manifesto p {
             color: var(--text-secondary);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             line-height: 1.75;
             font-weight: 300;
-            margin-bottom: 0px; /* Eliminado el margen inferior para limpiar la zona baja */
         }
 
-        /* Botón de Redirección Inferior Completamente Despejado */
+        /* Bloque de Acción Despejado */
         .card-link-trigger {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 700;
+            font-size: 0.65rem;
+            font-weight: 500;
             letter-spacing: 0.25em;
             text-transform: uppercase;
             color: var(--text-secondary);
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-top: 50px; /* Espaciado fijo y limpio garantizado */
-            transform: translateZ(20px);
+            margin-top: 50px;
             transition: var(--transition-fluid);
         }
 
         .ecosystem-card:hover .card-link-trigger {
             color: #ffffff;
         }
+        .card-link-trigger i { font-size: 0.7rem; transition: var(--transition-fluid); }
+        .ecosystem-card:hover .card-link-trigger i { transform: translateX(6px); }
 
-        .ecosystem-card:hover .card-link-trigger i {
-            transform: translateX(8px);
+        /* Estilos específicos para las tarjetas bloqueadas */
+        .card-restricted {
+            cursor: not-allowed;
+        }
+        .card-restricted:hover {
+            border-color: rgba(255, 255, 255, 0.08);
         }
 
-        .card-link-trigger i {
-            font-size: 0.75rem;
-            transition: var(--transition-fluid);
-        }
-
-        /* --- FOOTER --- */
+        /* --- FOOTER SOBERBIO --- */
         footer {
-            padding: 100px 24px;
+            padding: 120px 24px;
             border-top: 1px solid var(--border-glass);
             text-align: center;
             position: relative;
@@ -365,68 +372,71 @@
         }
 
         .footer-brand {
-            font-family: 'Cinzel', serif;
-            font-size: 1.25rem;
-            font-weight: 700;
-            letter-spacing: 0.3em;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 400;
+            letter-spacing: 0.4em;
             margin-bottom: 25px;
         }
 
         footer p {
-            font-size: 0.7rem;
-            color: rgba(255,255,255,0.15);
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.1);
             letter-spacing: 0.2em;
             text-transform: uppercase;
-            font-weight: 500;
         }
 
-        /* --- RESPONSIVE MEDIA QUERIES --- */
+        /* --- MEDIAS QUERIES ADAPTABLES (MOBILE FIRST & DISPOSITIVOS) --- */
         @media (max-width: 1200px) {
             .ecosystem-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
         }
 
         @media (max-width: 840px) {
-            .ecosystem-grid { grid-template-columns: 1fr; gap: 35px; }
+            .ecosystem-grid { grid-template-columns: 1fr; gap: 40px; }
             .ecosystem-card { min-height: auto; padding: 45px 35px; }
-            .hero-viewport h1 { letter-spacing: 0.05em; }
-            .ecosystem-container { padding: 90px 20px; }
+            .ecosystem-container { padding: 80px 20px; }
+            .matrix-data-tag { display: none; } /* Ocultar tags en móvil para limpiar pantalla */
             .card-link-trigger { margin-top: 40px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Datos perimetrales de seguridad corporativa -->
+    <div class="matrix-data-tag tag-left">SYS.STATUS // OPERATIONAL SECURE</div>
+    <div class="matrix-data-tag tag-right">CORE ARCHITECTURE v4.0.26</div>
+
     <div class="ambient-matrix">
         <div class="glow-top"></div>
         <div class="cyber-grid"></div>
     </div>
 
-    <!-- MAIN HERO (CON EFECTO INTERACTIVO DE FADE-OUT) -->
+    <!-- MAIN HERO CAPAZ DE DESVANECERSE EN SMARTPHONES SIN DESPERDICIAR BATERÍA -->
     <header class="hero-viewport" id="heroPortal">
-        <div class="corp-badge">Corporate Matrix</div>
+        <div class="corp-badge">Corporate System</div>
         <h1>5am Corporation</h1>
         <p>Un ecosistema global de infraestructura tecnológica, retail selecto y medios digitales de alto impacto.</p>
         <a href="#holdings" class="action-scroll">
-            Our Ecosystem
+            Sistemas Seguros
             <i class="fa-solid fa-chevron-down"></i>
         </a>
     </header>
 
-    <!-- CONTAINER DEL ECOSISTEMA -->
+    <!-- MATRIZ DEL ECOSISTEMA -->
     <main class="ecosystem-container" id="holdings">
         <div class="ecosystem-header">
-            <p>Strategic Holdings</p>
+            <p>Holdings & Asset Management</p>
             <h2>Nuestras Divisiones</h2>
         </div>
 
         <div class="ecosystem-grid">
             
-            <!-- DIVISION 1: 5AM ENTERPRISES -->
+            <!-- DIVISION 1: 5AM ENTERPRISES (ACTIVA) -->
             <a href="https://instagram.com/tu_agencia_o_red" target="_blank" class="ecosystem-card">
                 <div>
                     <div class="card-brand-meta">
                         <div class="brand-avatar">
-                            <i class="fa-solid fa-chart-network"></i>
+                            <i class="fa-solid fa-layer-group"></i>
                         </div>
                         <div>
                             <div class="brand-title">5am Enterprises</div>
@@ -434,7 +444,6 @@
                         </div>
                     </div>
                     
-                    <!-- Píldoras movidas estratégicamente hacia arriba -->
                     <div class="sub-group">
                         <span class="sub-pill">Webs</span>
                         <span class="sub-pill">Ads</span>
@@ -451,63 +460,65 @@
                 </div>
             </a>
 
-            <!-- DIVISION 2: TECH APP -->
-            <a href="https://tuappindependent.com" target="_blank" class="ecosystem-card">
+            <!-- DIVISION 2: 5AM TECH (CENSURADA / PRÓXIMAMENTE) -->
+            <div class="ecosystem-card card-restricted">
                 <div>
                     <div class="card-brand-meta">
                         <div class="brand-avatar">
-                            <i class="fa-solid fa-terminal"></i>
+                            <i class="fa-solid fa-lock"></i>
                         </div>
                         <div>
-                            <div class="brand-title">5am Tech</div>
+                            <div class="brand-title">
+                                <span class="censored-text">5am Tech</span>
+                            </div>
                             <div class="brand-subtitle">Software Engineering</div>
                         </div>
                     </div>
 
-                    <!-- Píldoras movidas estratégicamente hacia arriba -->
                     <div class="sub-group">
-                        <span class="sub-pill">iOS App</span>
-                        <span class="sub-pill">Android App</span>
+                        <span class="sub-pill pill-locked">Próximamente</span>
+                        <span class="sub-pill pill-locked">Encriptado</span>
                     </div>
 
                     <div class="card-manifesto">
                         <h3>Ecosistema Móvil Propietario</h3>
-                        <p>Arquitectura de software nativo premium. Soluciones tecnológicas enfocadas en optimizar drásticamente la productividad, el rendimiento diario y la experiencia del usuario final.</p>
+                        <p>Desarrollo estratégico de software cerrado y soluciones tecnológicas orientadas al alto rendimiento. El acceso público a la landing se encuentra suspendido de manera temporal.</p>
                     </div>
                 </div>
-                <div class="card-link-trigger">
-                    Ver Landing de la App <i class="fa-solid fa-arrow-right"></i>
+                <div class="card-link-trigger" style="cursor: not-allowed; opacity: 0.4;">
+                    Acceso Restringido <i class="fa-solid fa-lock" style="font-size: 0.6rem; margin-left: 5px;"></i>
                 </div>
-            </a>
+            </div>
 
-            <!-- DIVISION 3: APPAREL RETAIL -->
-            <a href="https://instagram.com/tu_marca_ropa" target="_blank" class="ecosystem-card">
+            <!-- DIVISION 3: STORE GH (CENSURADA / PRÓXIMAMENTE) -->
+            <div class="ecosystem-card card-restricted">
                 <div>
                     <div class="card-brand-meta">
                         <div class="brand-avatar">
-                            <i class="fa-solid fa-gem"></i>
+                            <i class="fa-solid fa-lock"></i>
                         </div>
                         <div>
-                            <div class="brand-title">Store GH</div>
+                            <div class="brand-title">
+                                <span class="censored-text">Store GH</span>
+                            </div>
                             <div class="brand-subtitle">Premium Retail & Apparel</div>
                         </div>
                     </div>
 
-                    <!-- Píldoras movidas estratégicamente hacia arriba -->
                     <div class="sub-group">
-                        <span class="sub-pill">E-Commerce</span>
-                        <span class="sub-pill">Streetwear</span>
+                        <span class="sub-pill pill-locked">Próximamente</span>
+                        <span class="sub-pill pill-locked">Restringido</span>
                     </div>
 
                     <div class="card-manifesto">
                         <h3>Indumentaria Urbana de Lujo</h3>
-                        <p>Línea exclusiva de moda y streetwear conceptual. Piezas con un minucioso cuidado del detalle, drops ultralimitados y un canal de distribución altamente selecto.</p>
+                        <p>Distribución y logística de alta costura urbana. El inventario de drops exclusivos y pasarelas de pago digitales se reanudará en la siguiente fase corporativa.</p>
                     </div>
                 </div>
-                <div class="card-link-trigger">
-                    Acceder a la Tienda <i class="fa-solid fa-arrow-right"></i>
+                <div class="card-link-trigger" style="cursor: not-allowed; opacity: 0.4;">
+                    Acceso Restringido <i class="fa-solid fa-lock" style="font-size: 0.6rem; margin-left: 5px;"></i>
                 </div>
-            </a>
+            </div>
 
         </div>
     </main>
@@ -518,35 +529,33 @@
     </footer>
 
     <script>
-        // CONTROL CURSOR: Efecto 3D de Luz Líquida en Tarjetas
-        const cards = document.querySelectorAll('.ecosystem-card');
-        cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
-            });
-        });
-
-        // CONTROL SCROLL: Desvanecimiento Ultra-Suave y progresivo de la información superior
+        // MOTOR DE DESVANECIMIENTO PARA ESCRITORIO Y TELÉFONOS (ALTAMENTE OPTIMIZADO)
         const heroPortal = document.getElementById('heroPortal');
-        window.addEventListener('scroll', () => {
+        
+        // Usamos requestAnimationFrame para que los navegadores móviles ejecuten el scroll a 60fps sin tirones
+        let ticking = false;
+
+        function updateHeroScroll() {
             const currentScroll = window.scrollY;
             const heroHeight = heroPortal.offsetHeight;
-            
+
             if (currentScroll <= heroHeight) {
-                // Cálculo de opacidad y difuminado en tiempo real basado en el desplazamiento
                 const fadeFactor = 1 - (currentScroll / heroHeight);
-                const blurFactor = (currentScroll / heroHeight) * 20; // Hasta 20px de desenfoque
-                const translateFactor = (currentScroll / heroHeight) * -50; // Desplazamiento sutil hacia arriba
-                
+                const blurFactor = (currentScroll / heroHeight) * 16;
+                // Usamos translate3d para activar la GPU del teléfono y que se vea sedoso
                 heroPortal.style.opacity = fadeFactor.toFixed(2);
                 heroPortal.style.filter = `blur(${blurFactor.toFixed(1)}px)`;
-                heroPortal.style.transform = `translateY(${translateFactor.toFixed(1)}px)`;
+                heroPortal.style.transform = `translate3d(0, ${(currentScroll * -0.15).toFixed(1)}px, 0)`;
             }
-        });
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateHeroScroll);
+                ticking = true;
+            }
+        }, { passive: true }); // 'passive: true' le dice al teléfono que no interfiera con el scroll nativo
     </script>
 </body>
 </html>
