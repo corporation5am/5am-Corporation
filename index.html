@@ -3,17 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>5am Corporation | Parent Company</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@200;400;600;700&display=swap" rel="stylesheet">
+    <title>5am Corporation | Corporate Matrix</title>
+    <!-- Fuentes de Alta Gama: Tecnológicas y Geométricas -->
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Plus+Jakarta+Sans:wght@200;300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
-            --bg-dark: #050505;
-            --bg-card: #0d0d0d;
-            --border-color: rgba(255, 255, 255, 0.08);
-            --text-muted: #888888;
-            --accent-glow: rgba(255, 255, 255, 0.03);
-            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --bg-pure: #020204;
+            --bg-card: rgba(10, 10, 14, 0.7);
+            --border-glass: rgba(255, 255, 255, 0.05);
+            --border-active: rgba(255, 255, 255, 0.2);
+            --text-primary: #ffffff;
+            --text-secondary: #8a8993;
+            --glow-color: rgba(255, 255, 255, 0.05);
+            --transition-fluid: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * {
@@ -24,396 +28,489 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-dark);
-            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-pure);
+            color: var(--text-primary);
             overflow-x: hidden;
-            letter-spacing: -0.02em;
+            perspective: 1000px; /* Habilita el entorno espacial 3D */
         }
 
-        /* --- SUTRE EFECTO DE FONDO TECNOLÓGICO --- */
-        .glow-overlay {
-            position: absolute;
-            top: 0; left: 50%; transform: translateX(-50%);
-            width: 100vw; height: 100vh;
-            background: radial-gradient(circle at 50% -20%, rgba(255,255,255,0.05) 0%, transparent 50%);
+        /* --- EFECTOS VISUALES DE AMBIENTACIÓN CINEMÁTICA --- */
+        .ambient-matrix {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
             pointer-events: none;
             z-index: 1;
+            overflow: hidden;
         }
 
-        /* --- HERO SECCIÓN --- */
-        header {
+        /* Foco de luz superior difuminado */
+        .glow-top {
+            position: absolute;
+            top: -25%; left: 50%; transform: translateX(-50%);
+            width: 80vw; height: 60vh;
+            background: radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 70%);
+            filter: blur(60px);
+        }
+
+        /* Cuadrícula tecnológica 3D de fondo */
+        .cyber-grid {
+            position: absolute;
+            width: 200%; height: 200%;
+            top: -50%; left: -50%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+            background-size: 60px 60px;
+            transform: rotateX(45deg) translateZ(-100px);
+            opacity: 0.6;
+            animation: gridScroll 120s linear infinite;
+        }
+
+        @keyframes gridScroll {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 1000px; }
+        }
+
+        /* --- HERO INTERACTIVO DE ENTRADA --- */
+        .hero-viewport {
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 20px;
+            padding: 24px;
             position: relative;
             z-index: 2;
         }
 
-        .corp-tag {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.3em;
-            color: var(--text-muted);
-            margin-bottom: 25px;
-            font-weight: 600;
-            opacity: 0;
-            animation: fadeIn 1.5s ease forwards 0.2s;
-        }
-
-        header h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(3rem, 8vw, 5.5rem);
+        .corp-badge {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 0.75rem;
             font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 30px;
-            letter-spacing: -0.03em;
+            letter-spacing: 0.5em;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            border: 1px solid var(--border-glass);
+            padding: 8px 20px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.01);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-bottom: 35px;
+            transform: translateZ(30px);
             opacity: 0;
-            animation: fadeIn 1.5s ease forwards 0.5s;
+            animation: matrixReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.2s;
         }
 
-        header p {
-            font-size: clamp(1rem, 2.5vw, 1.25rem);
-            max-width: 650px;
-            color: var(--text-muted);
-            font-weight: 200;
+        .hero-viewport h1 {
+            font-family: 'Syncopate', sans-serif;
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.05;
+            text-transform: uppercase;
+            background: linear-gradient(180deg, #ffffff 30%, #4a4950 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: matrixReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.5s;
+        }
+
+        .hero-viewport p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            max-width: 700px;
+            color: var(--text-secondary);
+            font-weight: 300;
             line-height: 1.8;
             margin-bottom: 50px;
             opacity: 0;
-            animation: fadeIn 1.5s ease forwards 0.8s;
+            animation: matrixReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.8s;
         }
 
-        .scroll-indicator {
+        .action-scroll {
             position: absolute;
-            bottom: 40px;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--text-muted);
+            bottom: 50px;
+            font-family: 'Syncopate', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            color: var(--text-secondary);
             text-decoration: none;
-            transition: var(--transition);
+            text-transform: uppercase;
+            transition: var(--transition-fluid);
             opacity: 0;
-            animation: fadeIn 1.5s ease forwards 1.1s;
+            animation: matrixReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 1.1s;
         }
 
-        .scroll-indicator:hover {
-            color: #ffffff;
+        .action-scroll:hover { color: #ffffff; text-shadow: 0 0 20px #fff; }
+        .action-scroll i { display: block; margin-top: 12px; font-size: 0.8rem; animation: pulseArrow 2s infinite; }
+
+        @keyframes pulseArrow {
+            0%, 100% { transform: translateY(0); opacity: 0.4; }
+            50% { transform: translateY(6px); opacity: 1; }
         }
 
-        .scroll-indicator i {
-            display: block;
-            margin-top: 10px;
-            text-align: center;
-            font-size: 0.9rem;
-            animation: bounce 2s infinite;
+        @keyframes matrixReveal {
+            from { opacity: 0; transform: translateY(40px) translateZ(-50px); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(0) translateZ(0); filter: blur(0); }
         }
 
-        /* --- SECCIÓN ECOSISTEMA --- */
-        .ecosystem-section {
-            padding: 140px 20px;
-            max-width: 1300px;
+        /* --- ECOSYSTEM SECTION --- */
+        .ecosystem-container {
+            padding: 160px 24px;
+            max-width: 1400px;
             margin: 0 auto;
             position: relative;
             z-index: 2;
         }
 
-        .section-header {
+        .ecosystem-header {
             text-align: center;
-            margin-bottom: 90px;
+            margin-bottom: 100px;
         }
 
-        .section-header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 5vw, 3.2rem);
+        .ecosystem-header h2 {
+            font-family: 'Syncopate', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
             font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .section-header p {
-            color: var(--text-muted);
-            font-size: 1rem;
-            font-weight: 300;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
-        }
-
-        /* --- GRID DE DIVISIONES --- */
-        .matrix-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .division-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 50px 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 480px;
-            text-decoration: none;
-            color: #ffffff;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .division-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(800px circle at var(--x, 0px) var(--y, 0px), rgba(255,255,255,0.04), transparent 40%);
-            border-radius: 24px;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            pointer-events: none;
-        }
-
-        .division-card:hover::before {
-            opacity: 1;
-        }
-
-        .division-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-        }
-
-        /* Contenido de las tarjetas */
-        .brand-identity {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-
-        .brand-logo-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            color: #ffffff;
-            transition: var(--transition);
-        }
-
-        .division-card:hover .brand-logo-icon {
-            background: #ffffff;
-            color: #000000;
-        }
-
-        .brand-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 700;
             letter-spacing: -0.01em;
-        }
-
-        .brand-tag {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--text-muted);
-            font-weight: 600;
-            margin-top: 2px;
-        }
-
-        .division-details h3 {
-            font-size: 1.6rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            letter-spacing: -0.02em;
-            line-height: 1.3;
-        }
-
-        .division-details p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.7;
-            font-weight: 300;
-            margin-bottom: 35px;
-        }
-
-        /* Sub-enlaces de Enterprises */
-        .sub-services {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .sub-tag {
-            font-size: 0.75rem;
-            padding: 8px 16px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-color);
-            border-radius: 30px;
-            color: #fff;
-            transition: var(--transition);
-        }
-
-        .division-card:hover .sub-tag {
-            border-color: rgba(255, 255, 255, 0.15);
-        }
-
-        /* Flecha de redirección */
-        .action-arrow {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            transition: var(--transition);
-            align-self: flex-start;
-        }
-
-        .division-card:hover .action-arrow {
-            color: #ffffff;
-            transform: translateX(5px);
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            padding: 80px 20px;
-            border-top: 1px solid var(--border-color);
-            text-align: center;
-            max-width: 1300px;
-            margin: 0 auto;
-        }
-
-        .footer-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.25rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
             margin-bottom: 20px;
         }
 
-        footer p {
+        .ecosystem-header p {
+            color: var(--text-secondary);
             font-size: 0.8rem;
-            color: #444444;
-            letter-spacing: 0.05em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+        }
+
+        /* --- ARQUITECTURA DE CONTENEDORES INTERACTIVOS 3D --- */
+        .ecosystem-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .ecosystem-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 32px;
+            padding: 60px 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 540px;
+            text-decoration: none;
+            color: var(--text-primary);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255,255,255,0.1);
+            transform-style: preserve-3d; /* Permite posicionamiento 3D de elementos hijos */
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s, box-shadow 0.5s;
+        }
+
+        /* Reflejo o destello dinámico al pasar el ratón */
+        .ecosystem-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(1000px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255,255,255,0.06), transparent 50%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .ecosystem-card:hover::after { opacity: 1; }
+
+        .ecosystem-card:hover {
+            transform: translateY(-12px) scale(1.02) rotateX(2deg) rotateY(1deg);
+            border-color: var(--border-active);
+            box-shadow: 0 50px 120px rgba(0, 0, 0, 0.9), 0 0 50px rgba(255, 255, 255, 0.02);
+        }
+
+        /* Cabeceras internas de las divisiones */
+        .card-brand-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 50px;
+            transform: translateZ(40px); /* Efecto pop-out */
+        }
+
+        .brand-avatar {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: var(--transition-fluid);
+        }
+
+        .ecosystem-card:hover .brand-avatar {
+            background: #ffffff;
+            color: #000000;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+            transform: scale(1.05) translateZ(10px);
+        }
+
+        .brand-title {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
             text-transform: uppercase;
         }
 
-        /* --- ANIMACIONES Y RESPONSIVE --- */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .brand-subtitle {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--text-secondary);
+            font-weight: 600;
+            margin-top: 4px;
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-6px); }
-            60% { transform: translateY(-3px); }
+        /* Bloque central de descripción */
+        .card-manifesto {
+            transform: translateZ(30px);
         }
 
-        @media (max-width: 1024px) {
-            .matrix-grid { grid-template-columns: 1fr; gap: 40px; }
-            .division-card { min-height: auto; padding: 45px 35px; }
+        .card-manifesto h3 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 20px;
+            letter-spacing: -0.03em;
+        }
+
+        .card-manifesto p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.75;
+            font-weight: 300;
+            margin-bottom: 40px;
+        }
+
+        /* Etiquetas modulares de sub-servicios */
+        .sub-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .sub-pill {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-glass);
+            border-radius: 100px;
+            color: #ffffff;
+            transition: var(--transition-fluid);
+        }
+
+        .ecosystem-card:hover .sub-pill {
+            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Flecha de redirección del ecosistema */
+        .card-link-trigger {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: auto;
+            transform: translateZ(20px);
+            transition: var(--transition-fluid);
+        }
+
+        .ecosystem-card:hover .card-link-trigger {
+            color: #ffffff;
+        }
+
+        .ecosystem-card:hover .card-link-trigger i {
+            transform: translateX(8px);
+            color: #ffffff;
+        }
+
+        .card-link-trigger i {
+            font-size: 0.8rem;
+            transition: var(--transition-fluid);
+        }
+
+        /* --- FOOTER DE ALTA GAMA --- */
+        footer {
+            padding: 100px 24px;
+            border-top: 1px solid var(--border-glass);
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(180deg, transparent 0%, rgba(2,2,4,0.9) 100%);
+        }
+
+        .footer-brand {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.4em;
+            margin-bottom: 25px;
+            color: #ffffff;
+        }
+
+        footer p {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.2);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* --- RESPONSIVE WORKFLOW (OPTIMIZADO MÓVIL Y ESCRITORIO) --- */
+        @media (max-width: 1200px) {
+            .ecosystem-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .ecosystem-grid {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+            .ecosystem-card {
+                min-height: auto;
+                padding: 50px 35px;
+            }
+            .hero-viewport h1 {
+                letter-spacing: -0.04em;
+            }
+            .ecosystem-container {
+                padding: 100px 20px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="glow-overlay"></div>
+    <!-- Entorno visual de efectos de luz y malla tecnológica -->
+    <div class="ambient-matrix">
+        <div class="glow-top"></div>
+        <div class="cyber-grid"></div>
+    </div>
 
-    <!-- MAIN CORPORATE PORTAL -->
-    <header>
-        <div class="corp-tag">Parent Company</div>
+    <!-- PORTADA DE LA CORPORACIÓN MATRIZ -->
+    <header class="hero-viewport">
+        <div class="corp-badge">Corporate Matrix</div>
         <h1>5am Corporation</h1>
         <p>Un ecosistema global de infraestructura tecnológica, retail selecto y medios digitales de alto impacto.</p>
-        <a href="#ecosystem" class="scroll-indicator">
-            Our Ecosystem
-            <i class="fa-solid fa-arrow-down"></i>
+        <a href="#holdings" class="action-scroll">
+            Nuestras Divisiones
+            <i class="fa-solid fa-chevron-down"></i>
         </a>
     </header>
 
-    <!-- DIVISION SELECTION (OUR ECOSYSTEM) -->
-    <main class="ecosystem-section" id="ecosystem">
-        <div class="section-header">
+    <!-- SECCIÓN INTERACTIVA DEL ECOSISTEMA (HOLDINGS) -->
+    <main class="ecosystem-container" id="holdings">
+        <div class="ecosystem-header">
             <p>Strategic Holdings</p>
-            <h2>Nuestras Divisiones</h2>
+            <h2>Our Ecosystem</h2>
         </div>
 
-        <div class="matrix-grid">
+        <div class="ecosystem-grid">
             
             <!-- DIVISION 1: 5AM ENTERPRISES -->
-            <!-- Configura tu enlace final en href="..." -->
-            <a href="https://instagram.com/tu_agencia_o_red" target="_blank" class="division-card">
+            <a href="https://instagram.com/tu_agencia_o_red" target="_blank" class="ecosystem-card">
                 <div>
-                    <div class="brand-identity">
-                        <div class="brand-logo-icon">
-                            <i class="fa-solid fa-chart-line"></i>
+                    <div class="card-brand-meta">
+                        <div class="brand-avatar">
+                            <i class="fa-solid fa-chart-network"></i>
                         </div>
                         <div>
-                            <div class="brand-name">5am Enterprises</div>
-                            <div class="brand-tag">Services & Media</div>
+                            <div class="brand-title">5am Enterprises</div>
+                            <div class="brand-subtitle">Media & Digital Infrastructure</div>
                         </div>
                     </div>
-                    <div class="division-details">
-                        <h3>Desarrollo Web, Anuncios & Medios</h3>
-                        <p>Infraestructura digital y estrategias de escalabilidad acelerada, apalancadas por nuestra división de contenido motivacional masivo.</p>
-                        <div class="sub-services">
-                            <span class="sub-tag">Webs</span>
-                            <span class="sub-tag">Ads</span>
-                            <span class="sub-tag">Motivation</span>
+                    <div class="card-manifesto">
+                        <h3>Estrategia Digital, Webs & Ads</h3>
+                        <p>Infraestructura digital avanzada y metodologías de escalabilidad acelerada, impulsadas orgánicamente por nuestra red global de contenidos masivos de motivación.</p>
+                        <div class="sub-group">
+                            <span class="sub-pill">Webs</span>
+                            <span class="sub-pill">Ads</span>
+                            <span class="sub-pill">Motivation</span>
                         </div>
                     </div>
                 </div>
-                <div class="action-arrow" style="margin-top: 40px;">
+                <div class="card-link-trigger">
                     Explorar división <i class="fa-solid fa-arrow-right"></i>
                 </div>
             </a>
 
             <!-- DIVISION 2: TECH APP -->
-            <!-- Configura tu enlace final en href="..." -->
-            <a href="https://tuappindependent.com" target="_blank" class="division-card">
+            <a href="https://tuappindependent.com" target="_blank" class="ecosystem-card">
                 <div>
-                    <div class="brand-identity">
-                        <div class="brand-logo-icon">
-                            <i class="fa-solid fa-cubes"></i>
+                    <div class="card-brand-meta">
+                        <div class="brand-avatar">
+                            <i class="fa-solid fa-terminal"></i>
                         </div>
                         <div>
-                            <div class="brand-name">5am Tech</div>
-                            <div class="brand-tag">Software Architecture</div>
+                            <div class="brand-title">5am Tech</div>
+                            <div class="brand-subtitle">Software Engineering</div>
                         </div>
                     </div>
-                    <div class="division-details">
-                        <h3>Aplicación Móvil</h3>
-                        <p>Plataforma tecnológica premium propietaria. Software optimizado diseñado para transformar la eficiencia y experiencia del usuario nativo.</p>
+                    <div class="card-manifesto">
+                        <h3>Ecosistema Móvil Propietario</h3>
+                        <p>Arquitectura de software nativo premium. Soluciones tecnológicas enfocadas en optimizar drásticamente la productividad, el rendimiento diario y la experiencia del usuario final.</p>
+                        <div class="sub-group">
+                            <span class="sub-pill">iOS App</span>
+                            <span class="sub-pill">Android App</span>
+                        </div>
                     </div>
                 </div>
-                <div class="action-arrow">
-                    Ver Landing de App <i class="fa-solid fa-arrow-right"></i>
+                <div class="card-link-trigger">
+                    Ver Landing de la App <i class="fa-solid fa-arrow-right"></i>
                 </div>
             </a>
 
             <!-- DIVISION 3: APPAREL RETAIL -->
-            <!-- Configura tu enlace final en href="..." -->
-            <a href="https://instagram.com/tu_marca_ropa" target="_blank" class="division-card">
+            <a href="https://instagram.com/tu_marca_ropa" target="_blank" class="ecosystem-card">
                 <div>
-                    <div class="brand-identity">
-                        <div class="brand-logo-icon">
-                            <i class="fa-solid fa-shirt"></i>
+                    <div class="card-brand-meta">
+                        <div class="brand-avatar">
+                            <i class="fa-solid fa-gem"></i>
                         </div>
                         <div>
-                            <div class="brand-name">Store GH</div>
-                            <div class="brand-tag">Apparel & Lifestyle</div>
+                            <div class="brand-title">Store GH</div>
+                            <div class="brand-subtitle">Premium Retail & Apparel</div>
                         </div>
                     </div>
-                    <div class="division-details">
-                        <h3>Marca de Ropa</h3>
-                        <p>Línea exclusiva de indumentaria urbana y de lujo con cortes meticulosos, piezas limitadas y distribución selecta.</p>
+                    <div class="card-manifesto">
+                        <h3>Indumentaria Urbana de Lujo</h3>
+                        <p>Línea exclusiva de moda y streetwear conceptual. Piezas con un minucioso cuidado del detalle, drops ultralimitados y un canal de distribución altamente selecto.</p>
+                        <div class="sub-group">
+                            <span class="sub-pill">E-Commerce</span>
+                            <span class="sub-pill">Streetwear</span>
+                        </div>
                     </div>
                 </div>
-                <div class="action-arrow">
+                <div class="card-link-trigger">
                     Acceder a la Tienda <i class="fa-solid fa-arrow-right"></i>
                 </div>
             </a>
@@ -423,20 +520,20 @@
 
     <!-- FOOTER CORPORATIVO -->
     <footer>
-        <div class="footer-logo">5AM CORPORATION</div>
-        <p>&copy; 2026 Private Equity & Holdings. All rights reserved.</p>
+        <div class="footer-brand">5AM CORPORATION</div>
+        <p>&copy; 2026 Private Equity & Core Holdings. All rights reserved.</p>
     </footer>
 
-    <!-- EFECTO INTERACTIVO DE LUCES EN LAS TARJETAS (Mantiene el efecto tecnológico de alto nivel) -->
+    <!-- SCRIPT DE SEGUIMIENTO DE CURSOR PARA CÁLCULO DE ILUMINACIÓN EN TIEMPO REAL -->
     <script>
-        const cards = document.querySelectorAll('.division-card');
-        cards.forEach(card => {
+        const matrixCards = document.querySelectorAll('.ecosystem-card');
+        matrixCards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--x', `${x}px`);
-                card.style.setProperty('--y', `${y}px`);
+                const boundingBox = card.getBoundingClientRect();
+                const mouseX = e.clientX - boundingBox.left;
+                const mouseY = e.clientY - boundingBox.top;
+                card.style.setProperty('--mouse-x', `${mouseX}px`);
+                card.style.setProperty('--mouse-y', `${mouseY}px`);
             });
         });
     </script>
